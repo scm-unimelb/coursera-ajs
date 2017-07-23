@@ -4,19 +4,49 @@
 angular.module('LunchChecker', [])
 
 .controller('LunchCheckerController', function ($scope) {
+  
+  //initialise
+  $scope.maxItems = 3;
   $scope.lunchmenu= '';
+  $scope.message = 'Not too much';
+  $scope.msgvisible = 'hidden'; //'visible' or 'hidden'
+  $scope.msgColour = 'green';
 
   $scope.listCount = function () {
-    var menuitems = 0;
+
     if($scope.lunchmenu == '') return 0;
-    var menusplit = $scope.lunchmenu.split(",");
 
-    menusplit = removeBlanks(menusplit);
+    var menuSplit = $scope.lunchmenu.split(",");
 
-    var numitems = menusplit.length;
-    return numitems;
+    menuSplit = removeBlanks(menuSplit);
+
+    var numItems = menuSplit.length;
+
+    return numItems;
   };
 
+  $scope.checkIfTooMuch = function () {
+
+    var numItems = $scope.listCount();
+
+    $scope.msgColour = 'green';
+    if(numItems > $scope.maxItems)
+    {
+      $scope.message = 'Too much!!';
+      $scope.msgColour = 'red';
+    }
+
+    $scope.msgvisible = 'visible';
+
+    return;
+  };
+
+  $scope.menuChanged = function () {
+
+    $scope.msgvisible = 'hidden';
+    
+    return;
+  };
 
   function removeBlanks(menuarr) {
     var arr = menuarr;

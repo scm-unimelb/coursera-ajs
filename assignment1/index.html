@@ -20,12 +20,16 @@
                       type="text"
                       placeholder="list comma separated dishes you usually have for lunch"
                       class="form-control"
-                      ng-model="lunchmenu">
+                      ng-model="lunchmenu"
+                      ng-Change="menuChanged()">
            </div>
            <div class="form-group">
-               <button class="btn btn-default">Check If Too Much</button>
+               <button class="btn btn-default"
+                        ng-click="checkIfTooMuch()">
+                        Check If Too Much</button>
            </div>
            <div class="form-group message">
+            <span style="visibility:{{msgvisible}};">{{message}}</span><br>
             {{lunchmenu}}<br>
             {{listCount()}}
              <!-- Your message can go here. -->
