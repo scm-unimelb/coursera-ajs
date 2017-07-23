@@ -1,16 +1,19 @@
 (function () {
 'use strict';
 
-angular.module('LunchChecker', [])
+angular.module('LunchCheck', [])
+.controller('LunchCheckController', LunchCheckController);
 
-.controller('LunchCheckerController', function ($scope) {
-  
+LunchCheckController.$inject = ['$scope'];
+
+function LunchCheckController($scope) {
+
   //initialise
   $scope.maxItems = 3;
   $scope.lunchmenu= '';
-  $scope.message = 'Not too much';
-  $scope.msgvisible = 'hidden'; //'visible' or 'hidden'
-  $scope.msgColour = 'green';
+  $scope.message = '';
+  $scope.msgVisible = 'hidden'; //'visible' when checking or 'hidden' when entering
+  $scope.msgColour = 'red'; //'green' or 'red' when empty
 
   $scope.listCount = function () {
 
@@ -29,21 +32,33 @@ angular.module('LunchChecker', [])
 
     var numItems = $scope.listCount();
 
-    $scope.msgColour = 'green';
-    if(numItems > $scope.maxItems)
+    switch (numItems)
     {
-      $scope.message = 'Too much!!';
-      $scope.msgColour = 'red';
+      case 0:
+        $scope.message = 'Please enter data first';
+        $scope.msgColour = 'red';
+        break;
+
+      case 1:
+      case 2:
+      case 3:
+        $scope.message = 'Enjoy!';
+        $scope.msgColour = 'green';
+        break;
+
+      default:
+        $scope.message = 'Too much!';
+        $scope.msgColour = 'green';
     }
 
-    $scope.msgvisible = 'visible';
+    $scope.msgVisible = 'visible';
 
     return;
   };
 
   $scope.menuChanged = function () {
 
-    $scope.msgvisible = 'hidden';
+    $scope.msgVisible = 'hidden';
     
     return;
   };
@@ -54,7 +69,6 @@ angular.module('LunchChecker', [])
     var index = arr.indexOf('');
     while (index >= 0)
     {
-      console.log(index);
       arr.splice(index, 1);
       index = arr.indexOf('');
     }
@@ -62,7 +76,6 @@ angular.module('LunchChecker', [])
     return arr;
   }
 
-});
-
+}
 
 })();
