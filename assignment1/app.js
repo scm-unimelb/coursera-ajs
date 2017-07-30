@@ -19,7 +19,11 @@ function LunchCheckController($scope) {
 
     if($scope.lunchmenu == '') return 0;
 
-    var menuSplit = $scope.lunchmenu.split(",");
+    var theMenu = $scope.lunchmenu;
+
+    theMenu = theMenu.replace(/ /g,"");
+
+    var menuSplit = theMenu.split(",");
 
     menuSplit = removeBlanks(menuSplit);
 
