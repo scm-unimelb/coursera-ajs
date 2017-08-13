@@ -1,0 +1,9 @@
+
+<div class="container">
+	<div class="row"
+	     ng-repeat="item in $ctrl.categories">
+		<div class="col-md-3"><a ui-sref="items({menucat: item.short_name})" ui-sref-active="activeTab">{{item.name}}</a></div>
+		<div class="col-md-9"></div>
+	</div>
+</div>
+<div></div>
