@@ -1,0 +1,43 @@
+<div class="container">
+<div class="row">
+	<div class="col-sm-3">
+	</div>
+	<div class="col-sm-3">			
+	  <h2>My Info</h2>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-3">
+	</div>
+	<div class="col-sm-3" ng-show="myInfoCtrl.userInfo.firstname">
+		<div>Name: {{ myInfoCtrl.userInfo.firstname }} {{ myInfoCtrl.userInfo.lastname }}</div>
+		<div>email: {{ myInfoCtrl.userInfo.email }}</div>
+		<div>phone: 
+			<span ng-show="myInfoCtrl.userInfo.phone">{{ myInfoCtrl.userInfo.phone }}</span>
+			<span ng-hide="myInfoCtrl.userInfo.phone">(not supplied)</span>
+		</div>
+		<div>favourite menu item: 
+			<span ng-hide="myInfoCtrl.userInfo.favourite">(not supplied)</span>
+			<h4 ng-show="myInfoCtrl.userInfo.favourite">
+				{{ myInfoCtrl.userInfo.favourite }} : {{myInfoCtrl.userInfo.favouriteDetails[0].name}}
+			</h4>
+		</div>
+		<div class="menu-item-description">
+			<span class="menu-item-details">{{myInfoCtrl.userInfo.favouriteDetails[0].description}}</span>
+		</div>
+<!-- 		<div class="menu-item-price">{{myInfoCtrl.userInfo.favouriteDetails[0].price_small | currency}}<span> {{myInfoCtrl.userInfo.favouriteDetails[0].small_portion_name}}</span> {{myInfoCtrl.userInfo.favouriteDetails[0].price_large | currency}} <span>{{myInfoCtrl.userInfo.favouriteDetails[0].large_portion_name}}</span>
+		</div> -->
+	</div>
+	<div class="col-sm-3" ng-hide="myInfoCtrl.userInfo.firstname">
+		<div>Not Signed Up Yet. <a ui-sref="public.signup"><span>Sign up Now!</span></a>
+	  	</div>
+	</div>
+</div>
+<div class="row" ng-show="myInfoCtrl.userInfo.favourite">
+	<div class="col-sm-5">
+	  <div class="menu-item-photo">
+		<img class="img-responsive" width="250" height="150" ng-src="{{myInfoCtrl.basePath}}/images/{{myInfoCtrl.userInfo.favouriteDetails[0].short_name}}.jpg" alt="{{myInfoCtrl.userInfo.favouriteDetails[0].name}}">
+	  </div>
+	</div>
+</div>	
+</div>

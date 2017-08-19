@@ -1,0 +1,83 @@
+<div class="container">
+  <h2 class="text-center">Sign Up for our Newsletter!</h2>
+  <div class="text-center">
+    Signing up will ensure you are kept up to date with offers and updates to our menu. Don't miss out - sign up today!
+  </div>
+	<div class="row">
+	  	<div class="col-sm-4">
+	      <fieldset>
+	      <h3>Please enter your details</h3>
+	      <form name='signUpCtrlForm' novalidate>
+			
+			<div class="form-group">
+	        <input type="text" name="firstname" placeholder="Your first name"
+	          ng-model="signUpCtrl.user.firstname"
+	          required
+	          minlength="1"
+	          ng-maxlength="32" class="form-control">
+	          <span
+	            ng-if="(signUpCtrlForm.firstname.$error.minlength || signUpCtrlForm.firstname.$error.required) && signUpCtrlForm.firstname.$touched">
+	            Your first name must be at least 1 character
+	          </span>
+	          <span ng-if="signUpCtrlForm.firstname.$error.maxlength && signUpCtrlForm.firstname.$touched">
+	            Your entered first name must not be longer than 32 characters
+	          </span>
+			</div>
+
+			<div class="form-group">
+	        <input type="text" name="lastname" placeholder="Your last name"
+	          ng-model="signUpCtrl.user.lastname"
+	          required
+	          minlength="1"
+	          ng-maxlength="32" class="form-control">
+	          <span
+	            ng-if="(signUpCtrlForm.lastname.$error.minlength || signUpCtrlForm.lastname.$error.required) && signUpCtrlForm.lastname.$touched">
+	            Your last name must be at least 1 character
+	          </span>
+	          <span ng-if="signUpCtrlForm.lastname.$error.maxlength && signUpCtrlForm.lastname.$touched">
+	            Your entered last name must not be longer than 32 characters
+	          </span>
+			</div> 
+			
+			<div class="form-group">
+	        <input type="email" name="email" placeholder="Your email address"
+	          ng-model="signUpCtrl.user.email"
+	          required class="form-control">
+	          <span ng-if="signUpCtrlForm.email.$invalid && signUpCtrlForm.email.$touched">
+	            Please supply a valid email address: handle@domain format
+	          </span>
+			</div>          
+			
+			<div class="form-group">
+	        <input type="text" name="phone" placeholder="Your phone (###-###-####) - optional"
+	          ng-model="signUpCtrl.user.phone"
+	          pattern="(\d{3})-(\d{3})-(\d{4})" class="form-control">
+	          <span ng-if="signUpCtrlForm.phone.$invalid && signUpCtrlForm.phone.$touched">
+	            Your phone number should be in the format ###-###-####.
+	          </span>
+			</div>          
+
+			<div class="form-group">
+	        <input type="text" name="favourite" placeholder="Your favourite menu item e.g. 'SO6' (no spaces)"
+	          ng-model="signUpCtrl.user.favourite" pattern="[a-zA-Z][a-zA-Z]?\d\d?" class="form-control">
+	          <span ng-if="signUpCtrlForm.favourite.$invalid && signUpCtrlForm.favourite.$touched">
+	            Your favourite should be one or two letters and a number, as seen on the menu.
+	          </span>
+			</div>
+
+			<div class="form-group">
+	        <button
+	          ng-disabled="signUpCtrlForm.$invalid"
+	          ng-click="signUpCtrl.submit(signUpCtrl.user)">Submit</button>
+
+	          <div style="margin-top: 10px;" ng-show="signUpCtrlForm.$valid && !signUpCtrl.form.completed">
+	            Ready to submit
+	          </div>
+			 </div>     
+			</form>
+		    </fieldset>
+			<div ng-if="signUpCtrl.signUpMsg"> {{signUpCtrl.signUpMsg}} </div>
+			<div ng-if="signUpCtrl.success"> <a ui-sref="public.myinfo"> <span>View my info</span></a></div>
+		</div>
+	</div> 
+</div>
